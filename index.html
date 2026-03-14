@@ -3,235 +3,633 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Marc Blasi — Ecografia Quirúrgica</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>Dr. Marc Blasi — Propostes de Disseny</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Sora:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0c0f;--surface:#111418;--border:#1e2329;--accent:#c8a96e;--accent-dim:#8a6e3f;--text:#e8e4dc;--text-muted:#6b6b6b;--text-dim:#9a9590}
+/* ─── SELECTOR UI ─────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1.7;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:linear-gradient(to bottom,rgba(10,12,15,0.95),transparent);backdrop-filter:blur(4px)}
-.nav-logo{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
-.nav-links{display:flex;gap:2.5rem}
-.nav-links a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--text-dim);text-decoration:none;text-transform:uppercase;transition:color .3s}
-.nav-links a:hover{color:var(--accent)}
-header{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 6rem 4rem;position:relative;z-index:2}
-.hero-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s ease forwards .2s}
-.hero-title{font-size:clamp(3rem,5vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .9s ease forwards .4s}
-.hero-title em{font-style:italic;color:var(--accent)}
-.hero-subtitle{font-size:1.1rem;font-weight:300;color:var(--text-dim);max-width:480px;line-height:1.8;margin-bottom:3.5rem;opacity:0;animation:fadeUp .9s ease forwards .6s}
-.hero-cta{display:flex;gap:1.5rem;align-items:center;opacity:0;animation:fadeUp .9s ease forwards .8s}
-.btn-primary{display:inline-block;padding:.85rem 2.2rem;background:var(--accent);color:var(--bg);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:opacity .3s}
-.btn-primary:hover{opacity:.85}
-.btn-ghost{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s,border-color .3s}
-.btn-ghost:hover{color:var(--accent);border-color:var(--accent)}
-.hero-right{position:relative;overflow:hidden}
-.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--bg) 0%,transparent 50%);z-index:1}
-.hero-visual{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 70% 50%,#1a2535 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 50% 30%,rgba(200,169,110,.06) 0%,transparent 60%)}
-.hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(200,169,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.04) 1px,transparent 1px);background-size:60px 60px;animation:gridFloat 20s linear infinite}
-.scan-line{position:absolute;width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);top:45%;left:10%;animation:scan 4s ease-in-out infinite;opacity:.3;z-index:2}
-.anatomy-label{position:absolute;right:3rem;bottom:8rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--accent-dim);text-transform:uppercase;writing-mode:vertical-rl;z-index:3;opacity:0;animation:fadeIn 1.2s ease forwards 1.2s}
-.rule{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 4rem}
-section{padding:7rem 4rem}
-.intro-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
-.section-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem}
-.intro-heading{font-size:2.8rem;font-weight:300;line-height:1.15;color:var(--text)}
-.intro-heading em{font-style:italic;color:var(--accent)}
-.intro-body{font-size:1.2rem;color:var(--text-dim);line-height:1.85;max-width:580px}
-.intro-body p+p{margin-top:1.2rem}
-.specialties-section{background:var(--surface)}
-.specialties-header{max-width:1100px;margin:0 auto 4rem;display:flex;justify-content:space-between;align-items:flex-end}
-.specialties-title{font-size:2.2rem;font-weight:300;line-height:1.2}
-.specialties-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border)}
-.specialty-card{background:var(--surface);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s;cursor:default}
-.specialty-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
-.specialty-card:hover{background:#161b22}
-.specialty-card:hover::before{transform:scaleX(1)}
-.card-num{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent-dim);letter-spacing:.2em;margin-bottom:1.5rem}
-.card-title{font-size:1.5rem;font-weight:400;margin-bottom:1rem;line-height:1.2}
-.card-body{font-size:1rem;color:var(--text-dim);line-height:1.7}
-.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
-.service-item{border-top:1px solid var(--border);padding-top:2rem}
-.service-icon{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem}
-.service-title{font-size:1.6rem;font-weight:400;margin-bottom:.8rem;line-height:1.2}
-.service-body{font-size:1rem;color:var(--text-dim);line-height:1.75}
-.contact-section{background:var(--surface)}
-.contact-inner{max-width:760px;margin:0 auto;text-align:center}
-.contact-title{font-size:3.5rem;font-weight:300;margin-bottom:1.2rem}
-.contact-title em{font-style:italic;color:var(--accent)}
-.contact-sub{font-size:1.1rem;color:var(--text-dim);margin-bottom:3.5rem;line-height:1.8}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;text-align:left}
-.form-full{grid-column:1/-1}
-.form-group{display:flex;flex-direction:column;gap:.5rem}
-.form-group label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
-.form-group input,.form-group textarea,.form-group select{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.85rem 1rem;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
-.form-group textarea{resize:vertical;min-height:130px}
-.form-submit{margin-top:1rem;display:flex;justify-content:center}
-.btn-submit{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;color:var(--accent);border:1px solid var(--accent);padding:1rem 3rem;cursor:pointer;transition:background .3s,color .3s}
-.btn-submit:hover{background:var(--accent);color:var(--bg)}
-footer{padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
-.footer-name{font-size:1.1rem;font-weight:400}
-.footer-links{display:flex;gap:2rem;align-items:center}
-.footer-links a{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:.5rem}
-.footer-links a:hover{color:var(--accent)}
-.footer-copy{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.1em}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes scan{0%,100%{top:35%;opacity:.1}50%{top:60%;opacity:.4}}
-@keyframes gridFloat{from{background-position:0 0}to{background-position:60px 60px}}
-@media(max-width:900px){nav{padding:1.2rem 2rem}.nav-links{gap:1.5rem}header{grid-template-columns:1fr;min-height:auto}.hero-left{padding:7rem 2rem 4rem}.hero-right{display:none}section{padding:5rem 2rem}.intro-grid{grid-template-columns:1fr;gap:2rem}.specialties-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr;gap:2.5rem}.form-grid{grid-template-columns:1fr}.form-full{grid-column:1}footer{flex-direction:column;gap:1.5rem;text-align:center}.specialties-header{flex-direction:column;align-items:flex-start;gap:1rem}.rule{margin:0 2rem}}
+body{font-family:system-ui,sans-serif;background:#f0ede8;min-height:100vh}
+
+.selector-bar{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:rgba(240,237,232,0.95);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(0,0,0,0.1);
+  padding:.75rem 2rem;
+  display:flex;align-items:center;gap:1.5rem;
+  font-family:system-ui,sans-serif;
+}
+.selector-label{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#666;white-space:nowrap}
+.selector-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{
+  padding:.45rem 1.1rem;
+  border-radius:99px;
+  border:1.5px solid #ccc;
+  background:white;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.05em;
+  cursor:pointer;
+  transition:all .25s;
+  color:#555;
+  white-space:nowrap;
+}
+.pill:hover{border-color:#999;color:#222;transform:translateY(-1px)}
+.pill.active{background:#1a1a1a;color:white;border-color:#1a1a1a}
+
+.proposal{display:none}
+.proposal.visible{display:block}
+
+/* ─── PROPOSTA 1: Dark Editorial ──────────────────────────────────────── */
+.p1{
+  --bg:#0a0c0f;--surface:#111418;--border:#1e2329;
+  --accent:#c8a96e;--accent-dim:#8a6e3f;
+  --text:#e8e4dc;--text-muted:#6b6b6b;--text-dim:#9a9590;
+}
+.p1{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+.p1 nav{position:sticky;top:48px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:rgba(10,12,15,0.95);backdrop-filter:blur(4px)}
+.p1 .nav-logo{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.p1 .nav-links{display:flex;gap:2.5rem}
+.p1 .nav-links a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--text-dim);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.p1 .nav-links a:hover{color:var(--accent)}
+.p1 header{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.p1 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 6rem;position:relative;z-index:2}
+.p1 .hero-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:p1FadeUp .8s ease forwards .2s}
+.p1 .hero-title{font-size:clamp(3rem,5vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;margin-bottom:1.5rem;opacity:0;animation:p1FadeUp .9s ease forwards .4s}
+.p1 .hero-title em{font-style:italic;color:var(--accent)}
+.p1 .hero-subtitle{font-size:1.1rem;color:var(--text-dim);max-width:480px;line-height:1.8;margin-bottom:3.5rem;opacity:0;animation:p1FadeUp .9s ease forwards .6s}
+.p1 .hero-cta{display:flex;gap:1.5rem;align-items:center;opacity:0;animation:p1FadeUp .9s ease forwards .8s}
+.p1 .btn-primary{display:inline-block;padding:.85rem 2.2rem;background:var(--accent);color:var(--bg);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:opacity .3s}
+.p1 .btn-primary:hover{opacity:.85}
+.p1 .btn-ghost{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s,border-color .3s}
+.p1 .btn-ghost:hover{color:var(--accent);border-color:var(--accent)}
+.p1 .hero-right{position:relative;overflow:hidden}
+.p1 .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--bg) 0%,transparent 50%);z-index:1}
+.p1 .hero-visual{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 70% 50%,#1a2535 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 50% 30%,rgba(200,169,110,.06) 0%,transparent 60%)}
+.p1 .hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(200,169,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.04) 1px,transparent 1px);background-size:60px 60px;animation:p1GridFloat 20s linear infinite}
+.p1 .scan-line{position:absolute;width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);top:45%;left:10%;animation:p1Scan 4s ease-in-out infinite;opacity:.3;z-index:2}
+.p1 .anatomy-label{position:absolute;right:3rem;bottom:8rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--accent-dim);text-transform:uppercase;writing-mode:vertical-rl;z-index:3}
+.p1 .rule{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 4rem}
+.p1 section{padding:7rem 4rem}
+.p1 .intro-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
+.p1 .section-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem}
+.p1 .intro-heading{font-size:2.8rem;font-weight:300;line-height:1.15}
+.p1 .intro-heading em{font-style:italic;color:var(--accent)}
+.p1 .intro-body{font-size:1.2rem;color:var(--text-dim);line-height:1.85;max-width:580px}
+.p1 .intro-body p+p{margin-top:1.2rem}
+.p1 .specialties-section{background:var(--surface)}
+.p1 .specialties-header{max-width:1100px;margin:0 auto 4rem;display:flex;justify-content:space-between;align-items:flex-end}
+.p1 .specialties-title{font-size:2.2rem;font-weight:300;line-height:1.2}
+.p1 .specialties-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border)}
+.p1 .specialty-card{background:var(--surface);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s}
+.p1 .specialty-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.p1 .specialty-card:hover{background:#161b22}
+.p1 .specialty-card:hover::before{transform:scaleX(1)}
+.p1 .card-num{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent-dim);letter-spacing:.2em;margin-bottom:1.5rem}
+.p1 .card-title{font-size:1.5rem;font-weight:400;margin-bottom:1rem;line-height:1.2}
+.p1 .card-body{font-size:1rem;color:var(--text-dim);line-height:1.7}
+.p1 .services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.p1 .service-item{border-top:1px solid var(--border);padding-top:2rem}
+.p1 .service-icon{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem}
+.p1 .service-title{font-size:1.6rem;font-weight:400;margin-bottom:.8rem;line-height:1.2}
+.p1 .service-body{font-size:1rem;color:var(--text-dim);line-height:1.75}
+.p1 .contact-section{background:var(--surface)}
+.p1 .contact-inner{max-width:760px;margin:0 auto;text-align:center}
+.p1 .contact-title{font-size:3.5rem;font-weight:300;margin-bottom:1.2rem}
+.p1 .contact-title em{font-style:italic;color:var(--accent)}
+.p1 .contact-sub{font-size:1.1rem;color:var(--text-dim);margin-bottom:3.5rem;line-height:1.8}
+.p1 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;text-align:left}
+.p1 .form-full{grid-column:1/-1}
+.p1 .form-group{display:flex;flex-direction:column;gap:.5rem}
+.p1 .form-group label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.p1 .form-group input,.p1 .form-group textarea,.p1 .form-group select{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.85rem 1rem;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.p1 .form-group input:focus,.p1 .form-group textarea:focus,.p1 .form-group select:focus{border-color:var(--accent)}
+.p1 .form-group textarea{resize:vertical;min-height:130px}
+.p1 .form-submit{margin-top:1rem;display:flex;justify-content:center}
+.p1 .btn-submit{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;color:var(--accent);border:1px solid var(--accent);padding:1rem 3rem;cursor:pointer;transition:background .3s,color .3s}
+.p1 .btn-submit:hover{background:var(--accent);color:var(--bg)}
+.p1 footer{padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.p1 .footer-name{font-size:1.1rem;font-weight:400}
+.p1 .footer-links{display:flex;gap:2rem;align-items:center}
+.p1 .footer-links a{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:.5rem}
+.p1 .footer-links a:hover{color:var(--accent)}
+.p1 .footer-copy{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.1em}
+@keyframes p1FadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes p1Scan{0%,100%{top:35%;opacity:.1}50%{top:60%;opacity:.4}}
+@keyframes p1GridFloat{from{background-position:0 0}to{background-position:60px 60px}}
+
+/* ─── PROPOSTA 2: White Precision ─────────────────────────────────────── */
+.p2{
+  --bg2:#ffffff;--surface2:#f7f8fa;--border2:#e2e5ea;
+  --accent2:#0d3b6e;--accent2-light:#e8eef6;--accent2-mid:#4a7bb5;
+  --text2:#0f1923;--text2-dim:#5a6475;--text2-muted:#9ba3b0;
+}
+.p2{background:var(--bg2);color:var(--text2);font-family:'Sora',system-ui,sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+.p2 nav{position:sticky;top:48px;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border2);backdrop-filter:blur(6px)}
+.p2 .nav-logo{font-size:.8rem;font-weight:500;letter-spacing:.1em;color:var(--accent2);text-transform:uppercase}
+.p2 .nav-links{display:flex;gap:3rem}
+.p2 .nav-links a{font-size:.75rem;letter-spacing:.08em;color:var(--text2-dim);text-decoration:none;text-transform:uppercase;font-weight:400;transition:color .3s}
+.p2 .nav-links a:hover{color:var(--accent2)}
+.p2 header{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;background:var(--bg2)}
+.p2 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 5rem 6rem;position:relative;z-index:2}
+.p2 .hero-eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.25em;color:var(--accent2-mid);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:p2SlideIn .7s ease forwards .1s}
+.p2 .hero-title{font-family:'Sora',sans-serif;font-size:clamp(2.5rem,4.5vw,5rem);font-weight:200;line-height:1.08;letter-spacing:-.03em;margin-bottom:2rem;opacity:0;animation:p2SlideIn .8s ease forwards .3s;color:var(--text2)}
+.p2 .hero-title strong{font-weight:500;color:var(--accent2)}
+.p2 .hero-title span{display:block}
+.p2 .hero-rule{width:3rem;height:2px;background:var(--accent2-mid);margin-bottom:2rem;opacity:0;animation:p2Expand .6s ease forwards .5s}
+.p2 .hero-subtitle{font-size:1rem;color:var(--text2-dim);max-width:440px;line-height:1.85;margin-bottom:3rem;opacity:0;animation:p2SlideIn .8s ease forwards .5s;font-weight:300}
+.p2 .hero-cta{display:flex;gap:1.2rem;align-items:center;opacity:0;animation:p2SlideIn .8s ease forwards .7s}
+.p2 .btn2-primary{display:inline-block;padding:.8rem 2rem;background:var(--accent2);color:white;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background .3s}
+.p2 .btn2-primary:hover{background:#0a2d55}
+.p2 .btn2-ghost{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2-dim);text-decoration:none;border-bottom:1.5px solid var(--border2);padding-bottom:.25rem;font-weight:400;transition:color .3s,border-color .3s}
+.p2 .btn2-ghost:hover{color:var(--accent2);border-color:var(--accent2)}
+.p2 .hero-right{position:relative;overflow:hidden;background:var(--surface2)}
+.p2 .hero-crosshairs{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.p2 .cross-h{position:absolute;left:0;right:0;height:1px;background:var(--border2);top:50%}
+.p2 .cross-v{position:absolute;top:0;bottom:0;width:1px;background:var(--border2);left:50%}
+.p2 .cross-circle{width:200px;height:200px;border-radius:50%;border:1px solid var(--border2);position:absolute;animation:p2Pulse 3s ease-in-out infinite}
+.p2 .cross-circle-2{width:320px;height:320px;border-radius:50%;border:1px dashed var(--border2);position:absolute;animation:p2Pulse 3s ease-in-out infinite .5s}
+.p2 .scan-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);animation:p2DotScan 4s ease-in-out infinite;box-shadow:0 0 0 0 rgba(13,59,110,.3)}
+.p2 .scan-beam{position:absolute;left:50%;top:0;bottom:0;width:60px;background:linear-gradient(90deg,transparent,rgba(13,59,110,.05),transparent);transform:translateX(-50%);animation:p2BeamMove 3s ease-in-out infinite}
+.p2 .hero-data{position:absolute;bottom:3rem;left:3rem;font-family:'Sora',monospace;font-size:.6rem;letter-spacing:.15em;color:var(--text2-muted);text-transform:uppercase;line-height:2}
+.p2 section{padding:6rem 5rem}
+.p2 .section-tag{font-size:.65rem;font-weight:500;letter-spacing:.25em;color:var(--accent2-mid);text-transform:uppercase;margin-bottom:.8rem}
+.p2 .intro-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.p2 .intro-heading{font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:200;line-height:1.2;letter-spacing:-.02em}
+.p2 .intro-heading strong{font-weight:500;color:var(--accent2)}
+.p2 .intro-body{font-size:1.05rem;color:var(--text2-dim);line-height:1.9;max-width:560px}
+.p2 .intro-body p+p{margin-top:1.2rem}
+.p2 .specs-bar{display:flex;gap:.5rem;margin-top:2rem}
+.p2 .spec-pill{font-size:.65rem;font-weight:500;letter-spacing:.1em;background:var(--accent2-light);color:var(--accent2);padding:.35rem .9rem;text-transform:uppercase}
+.p2 .alt-section{background:var(--surface2)}
+.p2 .specialty-wrapper{max-width:1100px;margin:0 auto}
+.p2 .specialty-grid-2{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.p2 .spec-card-2{padding:2.5rem;border:1px solid var(--border2);background:var(--bg2);position:relative;transition:border-color .3s,transform .3s}
+.p2 .spec-card-2:hover{border-color:var(--accent2-mid);transform:translateY(-4px)}
+.p2 .spec-card-2::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent2-mid));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.p2 .spec-card-2:hover::after{transform:scaleX(1)}
+.p2 .card2-num{font-size:.6rem;font-weight:500;letter-spacing:.25em;color:var(--text2-muted);text-transform:uppercase;margin-bottom:1.5rem}
+.p2 .card2-title{font-size:1.25rem;font-weight:400;margin-bottom:.8rem;line-height:1.3;color:var(--text2)}
+.p2 .card2-body{font-size:.9rem;color:var(--text2-dim);line-height:1.75}
+.p2 .services2-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border2)}
+.p2 .svc2-item{padding:2.5rem;border-right:1px solid var(--border2);position:relative;overflow:hidden}
+.p2 .svc2-item:last-child{border-right:none}
+.p2 .svc2-num{font-size:3rem;font-weight:200;color:var(--border2);line-height:1;margin-bottom:1rem;letter-spacing:-.05em;transition:color .3s}
+.p2 .svc2-item:hover .svc2-num{color:var(--accent2-light)}
+.p2 .svc2-title{font-size:1.1rem;font-weight:500;margin-bottom:.7rem;color:var(--text2)}
+.p2 .svc2-body{font-size:.9rem;color:var(--text2-dim);line-height:1.75}
+.p2 .contact2-section{background:var(--accent2);color:white}
+.p2 .contact2-inner{max-width:800px;margin:0 auto}
+.p2 .contact2-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem;align-items:end}
+.p2 .contact2-title{font-family:'Sora',sans-serif;font-size:3rem;font-weight:200;line-height:1.1;letter-spacing:-.02em}
+.p2 .contact2-title strong{font-weight:500}
+.p2 .contact2-sub{font-size:.95rem;line-height:1.85;opacity:.75}
+.p2 .form2-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.p2 .form2-full{grid-column:1/-1}
+.p2 .form2-group{display:flex;flex-direction:column;gap:.4rem}
+.p2 .form2-group label{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.p2 .form2-group input,.p2 .form2-group textarea,.p2 .form2-group select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:'Sora',sans-serif;font-size:.9rem;padding:.8rem 1rem;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.p2 .form2-group input::placeholder,.p2 .form2-group textarea::placeholder{color:rgba(255,255,255,.35)}
+.p2 .form2-group input:focus,.p2 .form2-group textarea:focus,.p2 .form2-group select:focus{border-color:rgba(255,255,255,.6)}
+.p2 .form2-group textarea{resize:vertical;min-height:120px}
+.p2 .form2-group select option{background:var(--accent2);color:white}
+.p2 .btn2-submit{margin-top:1.5rem;font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;background:white;color:var(--accent2);border:none;padding:1rem 2.5rem;cursor:pointer;transition:opacity .3s}
+.p2 .btn2-submit:hover{opacity:.9}
+.p2 footer{padding:2.5rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border2);background:var(--bg2)}
+.p2 .footer2-name{font-size:.9rem;font-weight:500;color:var(--text2)}
+.p2 .footer2-links{display:flex;gap:2rem}
+.p2 .footer2-links a{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text2-muted);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:.4rem}
+.p2 .footer2-links a:hover{color:var(--accent2)}
+.p2 .footer2-copy{font-size:.65rem;color:var(--text2-muted);letter-spacing:.05em}
+@keyframes p2SlideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes p2Expand{from{opacity:0;width:0}to{opacity:1;width:3rem}}
+@keyframes p2Pulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.03)}}
+@keyframes p2DotScan{0%,100%{top:50%;left:50%}25%{top:35%;left:60%}50%{top:55%;left:38%}75%{top:42%;left:55%}}
+@keyframes p2BeamMove{0%,100%{opacity:.3}50%{opacity:.8}}
+
+/* ─── PROPOSTA 3: Organic Warm ────────────────────────────────────────── */
+.p3{
+  --bg3:#faf7f2;--surface3:#f2ede4;--border3:#e0d5c5;
+  --ink:#1c1712;--ink-dim:#6b5f4e;--ink-muted:#a89880;
+  --warm:#8b4513;--warm-light:#f5e6d8;--warm-mid:#c4732e;
+}
+.p3{background:var(--bg3);color:var(--ink);font-family:'Lora',Georgia,serif;font-weight:400;line-height:1.75;overflow-x:hidden}
+.p3 nav{position:sticky;top:48px;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 5rem;background:rgba(250,247,242,0.94);border-bottom:1px solid var(--border3);backdrop-filter:blur(4px)}
+.p3 .nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:500;color:var(--ink);font-style:italic}
+.p3 .nav-links{display:flex;gap:3rem}
+.p3 .nav-links a{font-family:'Lora',serif;font-size:.78rem;color:var(--ink-dim);text-decoration:none;transition:color .3s}
+.p3 .nav-links a:hover{color:var(--warm)}
+.p3 header{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;position:relative;overflow:hidden;padding:0}
+.p3 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 5rem 6rem;position:relative;z-index:2}
+.p3 .hero-tag{font-family:'Lora',serif;font-style:italic;font-size:.85rem;color:var(--warm-mid);margin-bottom:2rem;opacity:0;animation:p3FadeIn .8s ease forwards .3s}
+.p3 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,5rem);font-weight:400;line-height:1.12;margin-bottom:2rem;opacity:0;animation:p3FadeIn .9s ease forwards .5s;color:var(--ink)}
+.p3 .hero-title .name{display:block;font-style:italic;color:var(--warm)}
+.p3 .hero-title .sub{display:block;font-weight:400;font-size:.55em;letter-spacing:.01em;font-style:normal;margin-top:.5rem;color:var(--ink-dim)}
+.p3 .hero-divider{width:4rem;height:1px;background:var(--warm-mid);margin:2rem 0;opacity:0;animation:p3FadeIn .7s ease forwards .7s}
+.p3 .hero-subtitle{font-size:1.05rem;color:var(--ink-dim);max-width:460px;line-height:1.9;margin-bottom:3rem;opacity:0;animation:p3FadeIn .9s ease forwards .7s}
+.p3 .hero-cta{display:flex;gap:1.5rem;align-items:center;opacity:0;animation:p3FadeIn .9s ease forwards .9s}
+.p3 .btn3-primary{display:inline-block;padding:.9rem 2.2rem;background:var(--warm);color:white;font-family:'Lora',serif;font-size:.85rem;text-decoration:none;transition:background .3s}
+.p3 .btn3-primary:hover{background:#6b3410}
+.p3 .btn3-ghost{font-family:'Lora',serif;font-style:italic;font-size:.85rem;color:var(--ink-dim);text-decoration:none;border-bottom:1px solid var(--border3);padding-bottom:.2rem;transition:color .3s}
+.p3 .btn3-ghost:hover{color:var(--warm)}
+.p3 .hero-right{position:relative;overflow:hidden;background:var(--surface3)}
+.p3 .hero-ornament{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.p3 .orb{position:absolute;border-radius:50%;border:1px solid var(--border3)}
+.p3 .orb1{width:280px;height:280px;animation:p3Rotate 20s linear infinite}
+.p3 .orb2{width:420px;height:420px;animation:p3Rotate 30s linear infinite reverse;border-style:dashed}
+.p3 .orb3{width:560px;height:560px;animation:p3Rotate 40s linear infinite;opacity:.5}
+.p3 .hero-quote{position:absolute;bottom:4rem;left:3rem;right:3rem}
+.p3 .hero-quote blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--ink-dim);line-height:1.7;border-left:2px solid var(--warm-mid);padding-left:1.5rem}
+.p3 .hero-wave{position:absolute;top:0;left:0;right:0;opacity:.08}
+.p3 section{padding:7rem 5rem}
+.p3 .section-intro{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;color:var(--warm-mid);margin-bottom:.8rem}
+.p3 .intro-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.p3 .intro-heading{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;line-height:1.25;color:var(--ink)}
+.p3 .intro-heading em{font-style:italic;color:var(--warm)}
+.p3 .intro-body{font-size:1.05rem;color:var(--ink-dim);line-height:1.95;max-width:560px}
+.p3 .intro-body p+p{margin-top:1.2rem}
+.p3 .alt-section{background:var(--surface3)}
+.p3 .specialty-wrapper{max-width:1100px;margin:0 auto}
+.p3 .section-heading{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:400;margin-bottom:3.5rem;line-height:1.25}
+.p3 .specialty-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.p3 .spec-card-3{padding:2.5rem;background:var(--bg3);border:1px solid var(--border3);position:relative;transition:border-color .3s}
+.p3 .spec-card-3:hover{border-color:var(--warm-mid)}
+.p3 .card3-icon{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--warm-light);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1rem}
+.p3 .card3-num{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--warm-mid);margin-bottom:1rem}
+.p3 .card3-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;margin-bottom:.8rem;line-height:1.3;color:var(--ink)}
+.p3 .card3-body{font-size:.95rem;color:var(--ink-dim);line-height:1.8}
+.p3 .services3-wrapper{max-width:1100px;margin:0 auto}
+.p3 .svc3-list{display:flex;flex-direction:column;gap:0}
+.p3 .svc3-item{display:grid;grid-template-columns:1fr 2fr;gap:3rem;padding:3rem 0;border-bottom:1px solid var(--border3);align-items:start;transition:background .3s;cursor:default}
+.p3 .svc3-item:first-child{border-top:1px solid var(--border3)}
+.p3 .svc3-left{}
+.p3 .svc3-label{font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:var(--warm-mid);margin-bottom:.5rem}
+.p3 .svc3-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;line-height:1.2;color:var(--ink)}
+.p3 .svc3-body{font-size:1rem;color:var(--ink-dim);line-height:1.85}
+.p3 .contact3-section{background:var(--surface3)}
+.p3 .contact3-inner{max-width:800px;margin:0 auto}
+.p3 .contact3-title{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;line-height:1.2;margin-bottom:1rem}
+.p3 .contact3-title em{font-style:italic;color:var(--warm)}
+.p3 .contact3-sub{font-size:1.05rem;color:var(--ink-dim);margin-bottom:3.5rem;line-height:1.85;max-width:560px}
+.p3 .form3-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.p3 .form3-full{grid-column:1/-1}
+.p3 .form3-group{display:flex;flex-direction:column;gap:.5rem}
+.p3 .form3-group label{font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:var(--warm-mid)}
+.p3 .form3-group input,.p3 .form3-group textarea,.p3 .form3-group select{background:var(--bg3);border:none;border-bottom:1.5px solid var(--border3);color:var(--ink);font-family:'Lora',serif;font-size:1rem;padding:.7rem 0;outline:none;transition:border-color .3s;-webkit-appearance:none;border-radius:0}
+.p3 .form3-group input:focus,.p3 .form3-group textarea:focus,.p3 .form3-group select:focus{border-color:var(--warm)}
+.p3 .form3-group textarea{resize:vertical;min-height:130px}
+.p3 .btn3-submit{font-family:'Lora',serif;font-size:.95rem;background:var(--warm);color:white;border:none;padding:1rem 3rem;cursor:pointer;transition:background .3s;margin-top:1.5rem}
+.p3 .btn3-submit:hover{background:#6b3410}
+.p3 footer{padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border3)}
+.p3 .footer3-name{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--ink)}
+.p3 .footer3-links{display:flex;gap:2rem}
+.p3 .footer3-links a{font-family:'Lora',serif;font-size:.75rem;color:var(--ink-muted);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:.4rem}
+.p3 .footer3-links a:hover{color:var(--warm)}
+.p3 .footer3-copy{font-family:'Lora',serif;font-size:.7rem;color:var(--ink-muted)}
+@keyframes p3FadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes p3Rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-<nav>
-  <div class="nav-logo">Dr. Marc Blasi</div>
-  <div class="nav-links">
-    <a href="#especialitats">Especialitats</a>
-    <a href="#serveis">Serveis</a>
-    <a href="#contacte">Contacte</a>
+
+<!-- SELECTOR -->
+<div class="selector-bar">
+  <span class="selector-label">Proposta</span>
+  <div class="selector-pills">
+    <button class="pill active" onclick="show(1)">1 — Dark Editorial</button>
+    <button class="pill" onclick="show(2)">2 — Precision Clínica</button>
+    <button class="pill" onclick="show(3)">3 — Orgànica Càlida</button>
   </div>
-</nav>
-<header>
-  <div class="hero-left">
-    <p class="hero-label">Cirurgia Plàstica &middot; Investigació &middot; Docència</p>
-    <h1 class="hero-title">Dr. Marc<br>Blasi<br><em>Ecografia</em><br>quirúrgica.</h1>
-    <p class="hero-subtitle">Cirurgià plàstic, investigador i docent. Transformant la pràctica clínica a través de la precisió ecogràfica.</p>
-    <div class="hero-cta">
-      <a href="#contacte" class="btn-primary">Col·laborem</a>
-      <a href="#especialitats" class="btn-ghost">Conèixer més</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROPOSTA 1: DARK EDITORIAL
+════════════════════════════════════════════════════════════ -->
+<div class="proposal p1 visible" id="p1">
+  <nav>
+    <div class="nav-logo">Dr. Marc Blasi</div>
+    <div class="nav-links">
+      <a href="#p1-especialitats">Especialitats</a>
+      <a href="#p1-serveis">Serveis</a>
+      <a href="#p1-contacte">Contacte</a>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-visual"></div>
-    <div class="hero-grid-lines"></div>
-    <div class="scan-line"></div>
-    <div class="anatomy-label">Anatomia Quirúrgica &middot; Ecografia</div>
-  </div>
-</header>
-<div class="rule"></div>
-<section>
-  <div class="intro-grid">
-    <div>
-      <p class="section-label">Sobre mi</p>
-      <h2 class="intro-heading">L'expertesa al servei de la <em>formació</em>.</h2>
+  </nav>
+  <header>
+    <div class="hero-left">
+      <p class="hero-label">Cirurgia Plàstica &middot; Investigació &middot; Docència</p>
+      <h1 class="hero-title">Dr. Marc<br>Blasi<br><em>Ecografia</em><br>quirúrgica.</h1>
+      <p class="hero-subtitle">Cirurgià plàstic, investigador i docent. Transformant la pràctica clínica a través de la precisió ecogràfica.</p>
+      <div class="hero-cta">
+        <a href="#p1-contacte" class="btn-primary">Col·laborem</a>
+        <a href="#p1-especialitats" class="btn-ghost">Conèixer més</a>
+      </div>
     </div>
-    <div class="intro-body">
-      <p>Combinant l'activitat quirúrgica amb la recerca, m'especialitzo en la divulgació i formació d'alt nivell per a professionals sanitaris en ecografia de l'aparell locomotor i microcirurgia.</p>
-      <p>La integració de l'ecografia en la pràctica quirúrgica no és tan sols una eina diagnòstica: és un canvi de paradigma en la comprensió anatòmica i en la presa de decisions clíniques.</p>
+    <div class="hero-right">
+      <div class="hero-visual"></div>
+      <div class="hero-grid-lines"></div>
+      <div class="scan-line"></div>
+      <div class="anatomy-label">Anatomia Quirúrgica &middot; Ecografia</div>
     </div>
-  </div>
-</section>
-<div class="rule"></div>
-<section class="specialties-section" id="especialitats">
-  <div class="specialties-header">
-    <div>
-      <p class="section-label">Àmbits</p>
-      <h2 class="specialties-title">Àrees d'especialitat.</h2>
+  </header>
+  <div class="rule"></div>
+  <section>
+    <div class="intro-grid">
+      <div>
+        <p class="section-label">Sobre mi</p>
+        <h2 class="intro-heading">L'expertesa al servei de la <em>formació</em>.</h2>
+      </div>
+      <div class="intro-body">
+        <p>Combinant l'activitat quirúrgica amb la recerca, m'especialitzo en la divulgació i formació d'alt nivell per a professionals sanitaris en ecografia de l'aparell locomotor i microcirurgia.</p>
+        <p>La integració de l'ecografia en la pràctica quirúrgica no és tan sols una eina diagnòstica: és un canvi de paradigma en la comprensió anatòmica i en la presa de decisions clíniques.</p>
+      </div>
     </div>
-  </div>
-  <div class="specialties-grid">
-    <div class="specialty-card">
-      <p class="card-num">01</p>
-      <h3 class="card-title">Ecografia Musculoesquelètica</h3>
-      <p class="card-body">Aplicada a la cirurgia i el diagnòstic precís. Visualització en temps real de l'anatomia per guiar procediments amb màxima seguretat.</p>
+  </section>
+  <div class="rule"></div>
+  <section class="specialties-section" id="p1-especialitats">
+    <div class="specialties-header">
+      <div>
+        <p class="section-label">Àmbits</p>
+        <h2 class="specialties-title">Àrees d'especialitat.</h2>
+      </div>
     </div>
-    <div class="specialty-card">
-      <p class="card-num">02</p>
-      <h3 class="card-title">Microcirurgia Reconstructiva</h3>
-      <p class="card-body">Integració de l'ecografia en procediments complexos. Planificació i execució quirúrgica assistida per imatge d'alta resolució.</p>
+    <div class="specialties-grid">
+      <div class="specialty-card"><p class="card-num">01</p><h3 class="card-title">Ecografia Musculoesquelètica</h3><p class="card-body">Aplicada a la cirurgia i el diagnòstic precís. Visualització en temps real de l'anatomia per guiar procediments amb màxima seguretat.</p></div>
+      <div class="specialty-card"><p class="card-num">02</p><h3 class="card-title">Microcirurgia Reconstructiva</h3><p class="card-body">Integració de l'ecografia en procediments complexos. Planificació i execució quirúrgica assistida per imatge d'alta resolució.</p></div>
+      <div class="specialty-card"><p class="card-num">03</p><h3 class="card-title">Anatomia Quirúrgica</h3><p class="card-body">Recerca i docència basada en l'evidència i la pràctica clínica. Transferència del coneixement anatòmic a l'entorn quirúrgic real.</p></div>
     </div>
-    <div class="specialty-card">
-      <p class="card-num">03</p>
-      <h3 class="card-title">Anatomia Quirúrgica</h3>
-      <p class="card-body">Recerca i docència basada en l'evidència i la pràctica clínica. Transferència del coneixement anatòmic a l'entorn quirúrgic real.</p>
+  </section>
+  <section id="p1-serveis">
+    <div style="max-width:1100px;margin:0 auto 4rem"><p class="section-label">Serveis</p><h2 style="font-size:2.2rem;font-weight:300">Serveis principals.</h2></div>
+    <div class="services-grid">
+      <div class="service-item"><p class="service-icon">&#8594; Formació</p><h3 class="service-title">Formació Especialitzada</h3><p class="service-body">Cursos i tallers presencials o híbrids dissenyats per a cirurgians i especialistes que busquen dominar l'anatomia ecogràfica aplicada.</p></div>
+      <div class="service-item"><p class="service-icon">&#8594; Divulgació</p><h3 class="service-title">Ponències i Congressos</h3><p class="service-body">Participació en fòrums científics internacionals i jornades hospitalàries com a ponent expert en ecografia quirúrgica.</p></div>
+      <div class="service-item"><p class="service-icon">&#8594; Consultoria</p><h3 class="service-title">Assessorament Professional</h3><p class="service-body">Consultoria tècnica per a serveis quirúrgics i suport en la resolució de casos clínics complexos mitjançant l'ecografia.</p></div>
     </div>
-  </div>
-</section>
-<section id="serveis">
-  <div style="max-width:1100px;margin:0 auto 4rem">
-    <p class="section-label">Serveis</p>
-    <h2 style="font-size:2.2rem;font-weight:300">Serveis principals.</h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-item">
-      <p class="service-icon">&#8594; Formació</p>
-      <h3 class="service-title">Formació Especialitzada</h3>
-      <p class="service-body">Cursos i tallers presencials o híbrids dissenyats per a cirurgians i especialistes que busquen dominar l'anatomia ecogràfica aplicada.</p>
-    </div>
-    <div class="service-item">
-      <p class="service-icon">&#8594; Divulgació</p>
-      <h3 class="service-title">Ponències i Congressos</h3>
-      <p class="service-body">Participació en fòrums científics internacionals i jornades hospitalàries com a ponent expert en ecografia quirúrgica.</p>
-    </div>
-    <div class="service-item">
-      <p class="service-icon">&#8594; Consultoria</p>
-      <h3 class="service-title">Assessorament Professional</h3>
-      <p class="service-body">Consultoria tècnica per a serveis quirúrgics i suport en la resolució de casos clínics complexos mitjançant l'ecografia.</p>
-    </div>
-  </div>
-</section>
-<div class="rule"></div>
-<section class="contact-section" id="contacte">
-  <div class="contact-inner">
-    <p class="section-label" style="margin-bottom:1rem">Contacte</p>
-    <h2 class="contact-title"><em>Col·laborem?</em></h2>
-    <p class="contact-sub">Per a propostes de formació avançada, participació en activitats científiques o assessorament especialitzat, envia'm un missatge a través d'aquest formulari.</p>
-    <form onsubmit="handleSubmit(event)">
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="nom">Nom i cognoms</label>
-          <input type="text" id="nom" placeholder="Dr. / Dra. ..." required>
+  </section>
+  <div class="rule"></div>
+  <section class="contact-section" id="p1-contacte">
+    <div class="contact-inner">
+      <p class="section-label" style="margin-bottom:1rem">Contacte</p>
+      <h2 class="contact-title"><em>Col·laborem?</em></h2>
+      <p class="contact-sub">Per a propostes de formació avançada, participació en activitats científiques o assessorament especialitzat.</p>
+      <form onsubmit="handleSubmit(event,'p1-ok')">
+        <div class="form-grid">
+          <div class="form-group"><label>Nom i cognoms</label><input type="text" placeholder="Dr. / Dra. ..." required></div>
+          <div class="form-group"><label>Correu electrònic</label><input type="email" placeholder="correu@exemple.com" required></div>
+          <div class="form-group"><label>Especialitat / Institució</label><input type="text" placeholder="Cirurgia, Hospital..."></div>
+          <div class="form-group"><label>Tipus de col·laboració</label><select><option value="">Selecciona...</option><option>Formació especialitzada</option><option>Ponència o congrés</option><option>Assessorament professional</option><option>Recerca</option><option>Altre</option></select></div>
+          <div class="form-group form-full"><label>Missatge</label><textarea placeholder="Descriu la proposta o la consulta..." required></textarea></div>
         </div>
-        <div class="form-group">
-          <label for="email">Correu electrònic</label>
-          <input type="email" id="email" placeholder="correu@exemple.com" required>
-        </div>
-        <div class="form-group">
-          <label for="especialitat">Especialitat / Institució</label>
-          <input type="text" id="especialitat" placeholder="Cirurgia, Hospital...">
-        </div>
-        <div class="form-group">
-          <label for="tipus">Tipus de col·laboració</label>
-          <select id="tipus">
-            <option value="">Selecciona...</option>
-            <option>Formació especialitzada</option>
-            <option>Ponència o congrés</option>
-            <option>Assessorament professional</option>
-            <option>Recerca</option>
-            <option>Altre</option>
-          </select>
-        </div>
-        <div class="form-group form-full">
-          <label for="missatge">Missatge</label>
-          <textarea id="missatge" placeholder="Descriu la proposta o la consulta..." required></textarea>
+        <div class="form-submit"><button type="submit" class="btn-submit">Enviar missatge</button></div>
+      </form>
+      <div id="p1-ok" style="display:none;margin-top:2rem;font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.15em;color:#c8a96e">Missatge rebut — Em posaré en contacte aviat.</div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-name">Dr. Marc Blasi</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>LinkedIn</a>
+      <a href="#p1-contacte">Contacte</a>
+    </div>
+    <div class="footer-copy">&#169; 2025 Dr. Marc Blasi</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROPOSTA 2: WHITE PRECISION
+════════════════════════════════════════════════════════════ -->
+<div class="proposal p2" id="p2">
+  <nav>
+    <div class="nav-logo">Dr. Marc Blasi</div>
+    <div class="nav-links">
+      <a href="#p2-especialitats">Especialitats</a>
+      <a href="#p2-serveis">Serveis</a>
+      <a href="#p2-contacte">Contacte</a>
+    </div>
+  </nav>
+  <header>
+    <div class="hero-left">
+      <p class="hero-eyebrow">Cirurgia Plàstica &middot; Investigació &middot; Docència</p>
+      <h1 class="hero-title">
+        <span style="font-weight:200">Dr. Marc</span>
+        <span><strong>Blasi</strong></span>
+        <span style="font-size:.45em;font-weight:200;letter-spacing:-.01em;color:var(--text2-dim);margin-top:.5rem">Ecografia aplicada<br>a la cirurgia i l'anatomia quirúrgica</span>
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-subtitle">Cirurgià plàstic, investigador i docent. Transformant la pràctica clínica a través de la precisió ecogràfica.</p>
+      <div class="hero-cta">
+        <a href="#p2-contacte" class="btn2-primary">Col·laborem</a>
+        <a href="#p2-especialitats" class="btn2-ghost">Especialitats</a>
+      </div>
+    </div>
+    <div class="hero-right" style="background:var(--surface2)">
+      <div class="hero-crosshairs">
+        <div class="cross-h"></div>
+        <div class="cross-v"></div>
+        <div class="cross-circle"></div>
+        <div class="cross-circle-2"></div>
+        <div class="scan-dot"></div>
+        <div class="scan-beam"></div>
+      </div>
+      <div class="hero-data">
+        <div>Freq. 15 MHz</div>
+        <div>Res. 0.1 mm</div>
+        <div>Prof. 4 cm</div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="intro-grid">
+      <div>
+        <p class="section-tag">Sobre mi</p>
+        <h2 class="intro-heading">L'expertesa al servei de la <strong>formació</strong>.</h2>
+      </div>
+      <div class="intro-body">
+        <p>Combinant l'activitat quirúrgica amb la recerca, m'especialitzo en la divulgació i formació d'alt nivell per a professionals sanitaris en ecografia de l'aparell locomotor i microcirurgia.</p>
+        <p>La integració de l'ecografia en la pràctica quirúrgica no és tan sols una eina diagnòstica: és un canvi de paradigma en la comprensió anatòmica.</p>
+        <div class="specs-bar">
+          <span class="spec-pill">Ecografia MSE</span>
+          <span class="spec-pill">Microcirurgia</span>
+          <span class="spec-pill">Anatomia</span>
         </div>
       </div>
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">Enviar missatge</button>
-      </div>
-    </form>
-    <div id="form-success" style="display:none;margin-top:2rem;font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.15em;color:var(--accent)">
-      Missatge rebut — Em posaré en contacte aviat.
     </div>
-  </div>
-</section>
-<footer>
-  <div class="footer-name">Dr. Marc Blasi</div>
-  <div class="footer-links">
-    <a href="https://linkedin.com" target="_blank">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>
-      LinkedIn
-    </a>
-    <a href="#contacte">Contacte</a>
-  </div>
-  <div class="footer-copy">&#169; 2025 Dr. Marc Blasi</div>
-</footer>
+  </section>
+  <section class="alt-section" id="p2-especialitats">
+    <div class="specialty-wrapper">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem">
+        <div><p class="section-tag">Àmbits</p><h2 style="font-size:2rem;font-weight:200;letter-spacing:-.02em">Àrees d'especialitat.</h2></div>
+      </div>
+      <div class="specialty-grid-2">
+        <div class="spec-card-2"><p class="card2-num">01 — Diagnòstic</p><h3 class="card2-title">Ecografia Musculoesquelètica</h3><p class="card2-body">Aplicada a la cirurgia i el diagnòstic precís. Visualització en temps real de l'anatomia per guiar procediments.</p></div>
+        <div class="spec-card-2"><p class="card2-num">02 — Cirurgia</p><h3 class="card2-title">Microcirurgia Reconstructiva</h3><p class="card2-body">Integració de l'ecografia en procediments complexos. Planificació i execució quirúrgica assistida per imatge.</p></div>
+        <div class="spec-card-2"><p class="card2-num">03 — Recerca</p><h3 class="card2-title">Anatomia Quirúrgica</h3><p class="card2-body">Recerca i docència basada en l'evidència i la pràctica clínica. Transferència del coneixement anatòmic.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="p2-serveis">
+    <div style="max-width:1100px;margin:0 auto 3rem"><p class="section-tag">Serveis</p><h2 style="font-size:2rem;font-weight:200;letter-spacing:-.02em">Serveis principals.</h2></div>
+    <div class="services2-grid">
+      <div class="svc2-item"><p class="svc2-num">01</p><h3 class="svc2-title">Formació Especialitzada</h3><p class="svc2-body">Cursos i tallers presencials o híbrids dissenyats per a cirurgians i especialistes que busquen dominar l'anatomia ecogràfica aplicada.</p></div>
+      <div class="svc2-item"><p class="svc2-num">02</p><h3 class="svc2-title">Ponències i Congressos</h3><p class="svc2-body">Participació en fòrums científics internacionals i jornades hospitalàries com a ponent expert en ecografia quirúrgica.</p></div>
+      <div class="svc2-item"><p class="svc2-num">03</p><h3 class="svc2-title">Assessorament Professional</h3><p class="svc2-body">Consultoria tècnica per a serveis quirúrgics i suport en la resolució de casos clínics complexos mittançant l'ecografia.</p></div>
+    </div>
+  </section>
+  <section class="contact2-section" id="p2-contacte">
+    <div class="contact2-inner">
+      <div class="contact2-header">
+        <h2 class="contact2-title"><strong>Col·laborem?</strong></h2>
+        <p class="contact2-sub">Per a propostes de formació avançada, participació en activitats científiques o assessorament especialitzat.</p>
+      </div>
+      <form onsubmit="handleSubmit(event,'p2-ok')">
+        <div class="form2-grid">
+          <div class="form2-group"><label>Nom i cognoms</label><input type="text" placeholder="Dr. / Dra. ..." required></div>
+          <div class="form2-group"><label>Correu electrònic</label><input type="email" placeholder="correu@exemple.com" required></div>
+          <div class="form2-group"><label>Especialitat / Institució</label><input type="text" placeholder="Cirurgia, Hospital..."></div>
+          <div class="form2-group"><label>Tipus de col·laboració</label><select><option value="">Selecciona...</option><option>Formació especialitzada</option><option>Ponència o congrés</option><option>Assessorament professional</option><option>Recerca</option><option>Altre</option></select></div>
+          <div class="form2-group form2-full"><label>Missatge</label><textarea placeholder="Descriu la proposta o la consulta..." required></textarea></div>
+        </div>
+        <button type="submit" class="btn2-submit">Enviar missatge</button>
+      </form>
+      <div id="p2-ok" style="display:none;margin-top:2rem;font-size:.75rem;letter-spacing:.15em;opacity:.8">Missatge rebut — Em posaré en contacte aviat.</div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer2-name">Dr. Marc Blasi</div>
+    <div class="footer2-links">
+      <a href="https://linkedin.com" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>LinkedIn</a>
+      <a href="#p2-contacte">Contacte</a>
+    </div>
+    <div class="footer2-copy">&#169; 2025 Dr. Marc Blasi</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROPOSTA 3: ORGÀNICA CÀLIDA
+════════════════════════════════════════════════════════════ -->
+<div class="proposal p3" id="p3">
+  <nav>
+    <div class="nav-logo">Dr. Marc Blasi</div>
+    <div class="nav-links">
+      <a href="#p3-especialitats">Especialitats</a>
+      <a href="#p3-serveis">Serveis</a>
+      <a href="#p3-contacte">Contacte</a>
+    </div>
+  </nav>
+  <header>
+    <div class="hero-left">
+      <p class="hero-tag">Cirurgià plàstic &middot; Investigador &middot; Docent</p>
+      <h1 class="hero-title">
+        <span class="name">Dr. Marc Blasi</span>
+        <span class="sub">Ecografia aplicada a la cirurgia<br>i l'anatomia quirúrgica</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">Transformant la pràctica clínica a través de la precisió ecogràfica. Combinant cirurgia, recerca i formació d'alt nivell per a professionals sanitaris.</p>
+      <div class="hero-cta">
+        <a href="#p3-contacte" class="btn3-primary">Col·laborem</a>
+        <a href="#p3-especialitats" class="btn3-ghost">Descobrir més</a>
+      </div>
+    </div>
+    <div class="hero-right" style="background:var(--surface3);position:relative;overflow:hidden">
+      <svg class="hero-wave" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <path d="M0,300 Q200,150 400,300 T800,300 L800,600 L0,600 Z" fill="#8b4513" opacity=".06"/>
+        <path d="M0,350 Q200,200 400,350 T800,350 L800,600 L0,600 Z" fill="#c4732e" opacity=".05"/>
+      </svg>
+      <div class="hero-ornament">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+      </div>
+      <div class="hero-quote">
+        <blockquote>L'ecografia és als ulls del cirurgià el que la llum és a l'anatomista: revela allò que es manté ocult.</blockquote>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="intro-grid">
+      <div>
+        <p class="section-intro">Sobre mi</p>
+        <h2 class="intro-heading">L'expertesa al servei de la <em>formació</em>.</h2>
+      </div>
+      <div class="intro-body">
+        <p>Combinant l'activitat quirúrgica amb la recerca, m'especialitzo en la divulgació i formació d'alt nivell per a professionals sanitaris en ecografia de l'aparell locomotor i microcirurgia.</p>
+        <p>La integració de l'ecografia en la pràctica quirúrgica no és tan sols una eina diagnòstica: és un canvi de paradigma en la comprensió anatòmica i en la presa de decisions clíniques.</p>
+      </div>
+    </div>
+  </section>
+  <section class="alt-section" id="p3-especialitats">
+    <div class="specialty-wrapper">
+      <p class="section-intro">Àmbits</p>
+      <h2 class="section-heading">Àrees d'especialitat.</h2>
+      <div class="specialty-grid-3">
+        <div class="spec-card-3"><p class="card3-num">I.</p><h3 class="card3-title">Ecografia Musculoesquelètica</h3><p class="card3-body">Aplicada a la cirurgia i el diagnòstic precís. Visualització en temps real de l'anatomia per guiar procediments amb màxima seguretat.</p></div>
+        <div class="spec-card-3"><p class="card3-num">II.</p><h3 class="card3-title">Microcirurgia Reconstructiva</h3><p class="card3-body">Integració de l'ecografia en procediments complexos. Planificació i execució quirúrgica assistida per imatge d'alta resolució.</p></div>
+        <div class="spec-card-3"><p class="card3-num">III.</p><h3 class="card3-title">Anatomia Quirúrgica</h3><p class="card3-body">Recerca i docència basada en l'evidència i la pràctica clínica. Transferència del coneixement anatòmic a l'entorn quirúrgic real.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="p3-serveis">
+    <div class="services3-wrapper">
+      <p class="section-intro">Serveis</p>
+      <h2 class="section-heading">Com puc ajudar-te.</h2>
+      <div class="svc3-list">
+        <div class="svc3-item">
+          <div class="svc3-left"><p class="svc3-label">01 — Formació</p><h3 class="svc3-title">Formació Especialitzada</h3></div>
+          <p class="svc3-body">Cursos i tallers presencials o híbrids dissenyats per a cirurgians i especialistes que busquen dominar l'anatomia ecogràfica aplicada. Un aprenentatge pràctic, basat en casos reals i evidència científica.</p>
+        </div>
+        <div class="svc3-item">
+          <div class="svc3-left"><p class="svc3-label">02 — Divulgació</p><h3 class="svc3-title">Ponències i Congressos</h3></div>
+          <p class="svc3-body">Participació en fòrums científics internacionals i jornades hospitalàries com a ponent expert en ecografia quirúrgica. Aportant rigor i perspectiva clínica al debat científic.</p>
+        </div>
+        <div class="svc3-item">
+          <div class="svc3-left"><p class="svc3-label">03 — Consultoria</p><h3 class="svc3-title">Assessorament Professional</h3></div>
+          <p class="svc3-body">Consultoria tècnica per a serveis quirúrgics i suport en la resolució de casos clínics complexos mittançant l'ecografia. Una mirada experta per als moments que ho requereixen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact3-section" id="p3-contacte">
+    <div class="contact3-inner">
+      <p class="section-intro" style="margin-bottom:.8rem">Contacte</p>
+      <h2 class="contact3-title"><em>Col·laborem?</em></h2>
+      <p class="contact3-sub">Per a propostes de formació avançada, participació en activitats científiques o assessorament especialitzat, escriu-me un missatge i et respondré personalment.</p>
+      <form onsubmit="handleSubmit(event,'p3-ok')">
+        <div class="form3-grid">
+          <div class="form3-group"><label>Nom i cognoms</label><input type="text" placeholder="Dr. / Dra. ..." required></div>
+          <div class="form3-group"><label>Correu electrònic</label><input type="email" placeholder="correu@exemple.com" required></div>
+          <div class="form3-group"><label>Especialitat / Institució</label><input type="text" placeholder="Cirurgia, Hospital..."></div>
+          <div class="form3-group"><label>Tipus de col·laboració</label><select><option value="">Selecciona...</option><option>Formació especialitzada</option><option>Ponència o congrés</option><option>Assessorament professional</option><option>Recerca</option><option>Altre</option></select></div>
+          <div class="form3-group form3-full"><label>Missatge</label><textarea placeholder="Explica'm la teva proposta o consulta..." required></textarea></div>
+        </div>
+        <button type="submit" class="btn3-submit">Enviar missatge</button>
+      </form>
+      <div id="p3-ok" style="display:none;margin-top:2rem;font-family:'Lora',serif;font-style:italic;font-size:.95rem;color:var(--warm-mid)">Missatge rebut — Em posaré en contacte aviat.</div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer3-name">Dr. Marc Blasi</div>
+    <div class="footer3-links">
+      <a href="https://linkedin.com" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>LinkedIn</a>
+      <a href="#p3-contacte">Contacte</a>
+    </div>
+    <div class="footer3-copy">&#169; 2025 Dr. Marc Blasi</div>
+  </footer>
+</div>
+
 <script>
-function handleSubmit(e){e.preventDefault();document.getElementById('form-success').style.display='block';e.target.reset()}
-const obs=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)'}})},{threshold:0.1});
-document.querySelectorAll('.specialty-card,.service-item,.intro-body,.intro-heading').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s ease,transform .7s ease';obs.observe(el)});
+function show(n){
+  document.querySelectorAll('.proposal').forEach(p=>p.classList.remove('visible'));
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('visible');
+  document.querySelectorAll('.pill')[n-1].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleSubmit(e,id){
+  e.preventDefault();
+  document.getElementById(id).style.display='block';
+  e.target.reset();
+}
 </script>
 </body>
 </html>
